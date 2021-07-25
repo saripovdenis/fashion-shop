@@ -1,0 +1,93 @@
+@import '../variables';
+
+.page {
+  width: calc(#{$app-width} - #{$cart-width});
+  height: $app-height;
+  padding: 23px 40px 40px;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 220px;
+    height: 20px;
+
+    &__item {
+      margin-right: 10px;
+      color: $grey-lite;
+
+      &--active {
+        color: $violet;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__content {
+    margin-top: 20px;
+
+    form {
+      .form__block {
+        margin-top: 25px;
+
+        .out {
+          margin-top: 16px;
+
+          display: flex;
+          justify-content: space-between;
+        }
+
+        &__input {
+          input {
+            border-radius: 3px;
+            border-width: 1px;
+            border: 1px solid $grey-lite;
+
+            height: 37px;
+            width: calc(#{$app-width} - #{$cart-width} - 80px);
+
+            margin-top: 10px;
+          }
+
+          input::placeholder {
+            padding: 0 14px;
+
+            color: $grey;
+            font-size: 16px;
+          }
+
+          input:focus {
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid $violet;
+          }
+
+          &--short input {
+            width: calc((#{$app-width} - #{$cart-width} - 80px) * 3.5 / 10);
+          }
+
+          &--medium input {
+            width: calc((#{$app-width} - #{$cart-width} - 80px) * 5.5 / 10);
+          }
+        }
+      }
+      button {
+        margin-top: 20px;
+
+        width: calc((#{$app-width} - #{$cart-width} - 80px) * 5.5 / 10);
+        height: 45px;
+
+        border-radius: 3px;
+        border: none;
+
+        color: $white;
+        font-weight: 700;
+        font-size: 15px;
+
+        background-color: $violet;
+      }
+    }
+  }
+}

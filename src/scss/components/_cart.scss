@@ -1,0 +1,73 @@
+@import '../variables';
+
+.cart {
+  width: $cart-width;
+  height: $app-height;
+  background-color: $cart-background;
+
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  padding: 30px 12px 0;
+
+  &__order {
+    &__item {
+      margin: 16px 0;
+
+      display: flex;
+      justify-content: flex-start;
+
+      padding-bottom: 12px;
+
+      border-bottom: 1px solid $grey-lite;
+
+      &--image {
+        width: 57px;
+        height: 45px;
+
+        border: 1px solid $app-background;
+      }
+
+      &__description {
+        margin-left: 12px;
+        width: 100%;
+
+        &--title {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        &--properties {
+          margin: 5px 0;
+          color: $black;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  &__summary {
+    width: 100%;
+
+    &__cost {
+      padding-bottom: 10px;
+      border-bottom: 1px solid $grey-lite;
+
+      &--item {
+        margin: 5px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &--total {
+      margin: 16px 0;
+
+      font-weight: 700;
+      color: $violet;
+
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

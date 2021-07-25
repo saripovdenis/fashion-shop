@@ -3,7 +3,7 @@
   margin: 0;
   list-style: none;
   outline: none;
-  font-family: 'Proxima Nova', Roboto, system-ui, Tahoma, sans-serif;
+  font-family: $font-stack;
   box-sizing: border-box;
 }
 
@@ -13,31 +13,34 @@ html {
 }
 
 body {
+  //set lining figures for font
+  -webkit-font-feature-settings: 'lnum';
+  -moz-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: $black;
+  color: $grey-dark;
 }
 
-a,
-span,
-p,
-b,
 h1,
 h2,
 h3,
 h4,
 h5 {
-  color: $black;
+  color: $violet;
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 h2 {
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 30px;
+  font-size: 16px;
+  line-height: 15px;
+  font-weight: 400;
 }
 
 a {

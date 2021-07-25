@@ -1,7 +1,14 @@
-import './App.css';
+import React from 'react';
 
-function App() {
-  return <div></div>;
-}
+import { Cart, Info } from './components';
+
+const App: React.FC = () => {
+  return (
+    <div className="app">
+      <Info />
+      <Cart />
+    </div>
+  );
+};
 
 export default App;
