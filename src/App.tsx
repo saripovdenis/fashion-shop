@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Cart, Info } from './components';
+import { Cart } from './components';
+import { Shipping, Billing, Payment } from './pages';
 
 const App: React.FC = () => {
   return (
     <div className="app">
-      <Info />
+      <Shipping />
       <Cart />
     </div>
   );
