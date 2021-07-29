@@ -49,13 +49,17 @@
             width: calc(#{$app-width} - #{$cart-width} - 80px);
 
             margin-top: 10px;
+
+            padding: 0 14px;
+            font-size: 16px;
           }
 
           input::placeholder {
-            padding: 0 14px;
-
             color: $grey;
-            font-size: 16px;
+          }
+
+          label {
+            margin: 13px 20px;
           }
 
           input:focus {
@@ -65,18 +69,22 @@
           }
 
           &--short input {
-            width: calc((#{$app-width} - #{$cart-width} - 80px) * 3.5 / 10);
+            width: calc((#{$app-width} - #{$cart-width} - 80px) * 0.35);
           }
 
-          &--medium input {
-            width: calc((#{$app-width} - #{$cart-width} - 80px) * 5.5 / 10);
+          &--medium {
+            input {
+              width: calc((#{$app-width} - #{$cart-width} - 80px) * 0.55);
+            }
+            display: flex;
+            justify-content: space-between;
           }
         }
       }
       button {
         margin-top: 20px;
 
-        width: calc((#{$app-width} - #{$cart-width} - 80px) * 5.5 / 10);
+        width: calc((#{$app-width} - #{$cart-width} - 80px) * 0.55);
         height: 45px;
 
         border-radius: 3px;

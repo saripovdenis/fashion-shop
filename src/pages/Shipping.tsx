@@ -16,6 +16,7 @@ function Shipping() {
               <input placeholder="Full Name" type="text" />
               <div className="form__block__input--medium">
                 <input placeholder="Daytime Phone" type="text" />
+                <label>For delivery questions only</label>
               </div>
             </div>
           </div>
