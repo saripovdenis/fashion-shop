@@ -3,6 +3,10 @@ export interface Action<T, P> {
   readonly payload?: P;
 }
 
+export interface RootState {
+  cart: CartState;
+}
+
 export interface CartState {
   items: CartItems;
   subtotal: number;
@@ -11,18 +15,14 @@ export interface CartState {
   total: number;
 }
 
-interface CartItems {
+interface CartItems extends Array<CartObject> {
   [key: number]: CartObject;
 }
 
 export interface CartObject {
   name: string;
-  count: number;
   img: string;
-  description: CartObjectDescription;
-}
-
-interface CartObjectDescription {
   color: string;
+  price: number;
   quantity: number;
 }
