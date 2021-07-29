@@ -1,6 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import Item from './Item';
+
+import { RootState, CartObject } from '../types';
 
 function Cart() {
+  const { items, subtotal, shipping, taxes, total } = useSelector(({ cart }: RootState) => cart);
   return (
     <div className="cart">
       <div className="title">
@@ -9,68 +15,38 @@ function Cart() {
       </div>
 
       <div className="cart__order">
-        <div className="cart__order__item">
-          <div className="cart__order__item--image">image</div>
-          <div className="cart__order__item__description">
-            <div className="cart__order__item__description--title">
-              <div>The Chelsea Boot</div>
-              <div>$235</div>
-            </div>
-            <div className="cart__order__item__description--properties">
-              <div>Black</div>
-              <div>Quantity: 1</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="cart__order__item">
-          <div className="cart__order__item--image">image</div>
-          <div className="cart__order__item__description">
-            <div className="cart__order__item__description--title">
-              <div>The Chelsea Boot</div>
-              <div>$235</div>
-            </div>
-            <div className="cart__order__item__description--properties">
-              <div>Black</div>
-              <div>Quantity: 1</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="cart__order__item">
-          <div className="cart__order__item--image">image</div>
-          <div className="cart__order__item__description">
-            <div className="cart__order__item__description--title">
-              <div>The Chelsea Boot</div>
-              <div>$235</div>
-            </div>
-            <div className="cart__order__item__description--properties">
-              <div>Black</div>
-              <div>Quantity: 1</div>
-            </div>
-          </div>
-        </div>
+        {items.map((obj: CartObject) => {
+          return (
+            <Item
+              name={obj.name}
+              img={obj.img}
+              price={obj.price}
+              color={obj.color}
+              quantity={obj.quantity}
+            />
+          );
+        })}
       </div>
 
       <div className="cart__summary">
         <div className="cart__summary__cost">
           <div className="cart__summary__cost--item">
             <div>Subtotal</div>
-            <div>$398</div>
+            <div>${subtotal}</div>
           </div>
           <div className="cart__summary__cost--item">
             <div>Shipping</div>
-            <div>Free</div>
+            <div>{shipping ? shipping : 'Free'}</div>
           </div>
           <div className="cart__summary__cost--item">
             <div>Taxes</div>
-            <div>$12.12</div>
+            <div>${taxes}</div>
           </div>
         </div>
 
         <div className="cart__summary--total">
           <div>Total</div>
-          <div>$410.12</div>
+          <div>${total}</div>
         </div>
       </div>
     </div>
