@@ -21,6 +21,14 @@ const Item = ({ img, name, price, color, quantity }: ItemProps) => {
           <div>{color}</div>
           <div>Quantity: {quantity}</div>
         </div>
+        <div className="cart__order__item__edit">
+          <div className="cart__order__item__edit--button">
+            <button>+</button>
+          </div>
+          <div className="cart__order__item__edit--button">
+            <button>-</button>
+          </div>
+        </div>
       </div>
     </div>
   );

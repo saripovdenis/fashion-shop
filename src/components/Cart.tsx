@@ -15,9 +15,10 @@ function Cart() {
       </div>
 
       <div className="cart__order">
-        {items.map((obj: CartObject) => {
+        {items.map((obj: CartObject, index) => {
           return (
             <Item
+              key={`${obj.name}_${index}`}
               name={obj.name}
               img={obj.img}
               price={obj.price}
@@ -26,6 +27,7 @@ function Cart() {
             />
           );
         })}
+        <button className="cart__order--done">Done</button>
       </div>
 
       <div className="cart__summary">
