@@ -7,11 +7,17 @@ import { RootState, CartObject } from '../types';
 
 function Cart() {
   const { items, subtotal, shipping, taxes, total } = useSelector(({ cart }: RootState) => cart);
+  const [editing, setEditing] = React.useState(false);
+
+  const handleEditing = () => {
+    setEditing((editing) => !editing);
+  };
+
   return (
     <div className="cart">
       <div className="title">
         <h2>Order Summary</h2>
-        <button>edit order</button>
+        <button onClick={handleEditing}>edit order</button>
       </div>
 
       <div className="cart__order">
@@ -24,10 +30,16 @@ function Cart() {
               price={obj.price}
               color={obj.color}
               quantity={obj.quantity}
+              id={obj.id}
+              editing={editing}
             />
           );
         })}
-        <button className="cart__order--done">Done</button>
+        {editing && (
+          <button className="cart__order--done" onClick={handleEditing}>
+            Done
+          </button>
+        )}
       </div>
 
       <div className="cart__summary">
