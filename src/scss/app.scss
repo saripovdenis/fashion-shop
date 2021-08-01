@@ -13,6 +13,7 @@ body {
 
 .app {
   max-width: $app-width;
+  min-width: 410px;
   height: $app-height;
   margin: 95px auto;
   background-color: $white;

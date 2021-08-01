@@ -7,25 +7,39 @@ import { RootState, CartObject } from '../types';
 
 function Cart() {
   const { items, subtotal, shipping, taxes, total } = useSelector(({ cart }: RootState) => cart);
+  const [editing, setEditing] = React.useState(false);
+
+  const handleEditing = () => {
+    setEditing((editing) => !editing);
+  };
+
   return (
     <div className="cart">
       <div className="title">
         <h2>Order Summary</h2>
-        <button>edit order</button>
+        <button onClick={handleEditing}>edit order</button>
       </div>
 
       <div className="cart__order">
-        {items.map((obj: CartObject) => {
+        {items.map((obj: CartObject, index) => {
           return (
             <Item
+              key={`${obj.name}_${index}`}
               name={obj.name}
               img={obj.img}
               price={obj.price}
               color={obj.color}
               quantity={obj.quantity}
+              id={obj.id}
+              editing={editing}
             />
           );
         })}
+        {editing && (
+          <button className="cart__order--done" onClick={handleEditing}>
+            Done
+          </button>
+        )}
       </div>
 
       <div className="cart__summary">
