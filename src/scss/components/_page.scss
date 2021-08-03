@@ -116,7 +116,7 @@
           }
         }
       }
-      button {
+      input[type='submit'] {
         margin-top: 20px;
 
         width: calc((#{$app-width} - #{$cart-width} - 80px) * 0.55);

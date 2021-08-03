@@ -1,7 +1,27 @@
 import React from 'react';
 import { PageHeader } from '../components';
 
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+interface Inputs {
+  name: string;
+  phone: string;
+  address: string;
+  city: string;
+  country: string;
+  zip: string;
+}
+
 function Shipping() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(JSON.stringify(data));
+
   return (
     <div className="page">
       <PageHeader />
@@ -9,25 +29,40 @@ function Shipping() {
       <div className="page__content">
         <h1>Shipping Info</h1>
 
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form__block">
             <h2>Recipient</h2>
             <div className="form__block__input">
               <div className="form__block__input--full">
-                <div className="form__block__input__error">
-                  <div className="form__block__input__error--message">
-                    Please enter recipient full name
+                {errors.name && (
+                  <div className="form__block__input__error">
+                    <div className="form__block__input__error--message">This field is required</div>
                   </div>
-                </div>
-                <input placeholder="Full Name" type="text" />
+                )}
+                <input
+                  {...register('name', {
+                    required: true,
+                    pattern: /\w\s\w\s?\w?/,
+                  })}
+                  placeholder="Full Name"
+                  type="text"
+                />
               </div>
               <div className="form__block__input--medium">
-                <div className="form__block__input__error">
-                  <div className="form__block__input__error--message">
-                    Please enter valid number
+                {errors.phone && (
+                  <div className="form__block__input__error">
+                    <div className="form__block__input__error--message">
+                      Please, enter valid phone number
+                    </div>
                   </div>
-                </div>
-                <input placeholder="Daytime Phone" type="text" />
+                )}
+                <input
+                  {...register('phone', {
+                    pattern: /\+?\d\d\d\d\d\d\d\d\d\d\d/,
+                  })}
+                  placeholder="Daytime Phone"
+                  type="number"
+                />
                 <label>For delivery questions only</label>
               </div>
             </div>
@@ -36,45 +71,66 @@ function Shipping() {
             <h2>Address</h2>
             <div className="form__block__input">
               <div className="form__block__input--full">
-                <div className="form__block__input__error">
-                  <div className="form__block__input__error--message">
-                    Please enter valid address
+                {errors.address && (
+                  <div className="form__block__input__error">
+                    <div className="form__block__input__error--message">This field is required</div>
                   </div>
-                </div>
-                <input placeholder="Street Address" type="text" />
+                )}
+                <input
+                  {...register('address', { required: true })}
+                  placeholder="Street Address"
+                  type="text"
+                />
               </div>
               <div className="form__block__input--full">
                 <input placeholder="Apt, Suite, Bldg, Gate Code. (optional)" type="text" />
               </div>
               <div className="out">
                 <div className="form__block__input--full">
-                  <div className="form__block__input__error">
-                    <div className="form__block__input__error--message">
-                      Please enter valid city
+                  {/* {cityDirty && cityError && (
+                    <div className="form__block__input__error">
+                      <div className="form__block__input__error--message">{cityError}</div>
                     </div>
-                  </div>
-                  <input placeholder="City" type="text" />
+                  )} */}
+                  <input
+                    {...register('city', { required: true })}
+                    name="city"
+                    placeholder="City"
+                    type="text"
+                  />
                 </div>
               </div>
               <div className="out">
                 <div className="form__block__input--medium">
-                  <div className="form__block__input__error">
-                    <div className="form__block__input__error--message">
-                      Please enter valid country
+                  {/* {countryDirty && countryError && (
+                    <div className="form__block__input__error">
+                      <div className="form__block__input__error--message">{countryError}</div>
                     </div>
-                  </div>
-                  <input placeholder="Country" type="text" />
+                  )} */}
+                  <input
+                    {...register('country', { required: true })}
+                    name="country"
+                    placeholder="Country"
+                    type="text"
+                  />
                 </div>
                 <div className="form__block__input--short">
-                  <div className="form__block__input__error">
-                    <div className="form__block__input__error--message">Please enter valid ZIP</div>
-                  </div>
-                  <input placeholder="ZIP" type="text" />
+                  {/* {zipDirty && zipError && (
+                    <div className="form__block__input__error">
+                      <div className="form__block__input__error--message">{zipError}</div>
+                    </div>
+                  )} */}
+                  <input
+                    {...register('zip', { required: true, pattern: /\d\d\d\d\d\d/ })}
+                    name="zip"
+                    placeholder="ZIP"
+                    type="number"
+                  />
                 </div>
               </div>
             </div>
           </div>
-          <button>Continue</button>
+          <input type="submit" />
         </form>
       </div>
     </div>
