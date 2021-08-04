@@ -5,6 +5,32 @@ export interface Action<T, P> {
 
 export interface RootState {
   cart: CartState;
+  info: InfoState;
+}
+
+export interface InfoState {
+  shipping: InfoShipping;
+  billing: InfoBilling;
+}
+
+export interface InfoShipping {
+  name: string;
+  phone: string;
+  address: string;
+  suite?: string;
+  city: string;
+  country: string;
+  zip: string;
+}
+
+export interface InfoBilling {
+  name: string;
+  email: string;
+  address: string;
+  suite?: string;
+  city: string;
+  country: string;
+  zip: string;
 }
 
 export interface CartState {

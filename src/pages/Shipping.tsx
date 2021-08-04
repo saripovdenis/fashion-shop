@@ -1,26 +1,25 @@
 import React from 'react';
 import { PageHeader } from '../components';
 
+import { useDispatch } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-interface Inputs {
-  name: string;
-  phone: string;
-  address: string;
-  city: string;
-  country: string;
-  zip: string;
-}
+import { createPushShippingAction } from '../redux/actions/info';
+import { InfoShipping } from '../types';
 
-function Shipping() {
+const Shipping = () => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<InfoShipping>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(JSON.stringify(data));
+  const dispatch = useDispatch();
+
+  const onSubmit: SubmitHandler<InfoShipping> = (data: InfoShipping) => {
+    dispatch(createPushShippingAction(data));
+  };
 
   return (
     <div className="page">
@@ -135,6 +134,6 @@ function Shipping() {
       </div>
     </div>
   );
-}
+};
 
 export default Shipping;

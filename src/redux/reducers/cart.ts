@@ -2,7 +2,7 @@ import { produce } from 'immer';
 import { AddItemAction, RemoveItemAction } from '../actions/cart';
 import { AddItemActionType, RemoveItemActionType } from '../actions/constants';
 
-import { CartObject, CartState } from '../../types';
+import { CartState } from '../../types';
 
 const initialState: CartState = {
   items: [
