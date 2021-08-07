@@ -1,10 +1,21 @@
 import React from 'react';
 
-function PageHeader() {
+import classNames from 'classnames';
+
+interface Props {
+  active: string;
+}
+
+function PageHeader({ active }: Props) {
   return (
     <div className="page__header">
       <div className="page__header__item">
-        <div className="page__header__item--active">Shipping</div>
+        <div
+          className={classNames({
+            'page__header__item--active': active === 'shipping',
+          })}>
+          Shipping
+        </div>
       </div>
 
       <div className="page__header__item">
@@ -21,7 +32,14 @@ function PageHeader() {
         </svg>
       </div>
 
-      <div className="page__header__item">Billing</div>
+      <div className="page__header__item">
+        <div
+          className={classNames({
+            'page__header__item--active': active === 'billing',
+          })}>
+          Billing
+        </div>
+      </div>
       <div className="page__header__item">
         <svg
           width="8"
@@ -35,7 +53,14 @@ function PageHeader() {
           />
         </svg>
       </div>
-      <div className="page__header__item">Payment</div>
+      <div className="page__header__item">
+        <div
+          className={classNames({
+            'page__header__item--active': active === 'payment',
+          })}>
+          Payment
+        </div>
+      </div>
     </div>
   );
 }

@@ -21,6 +21,12 @@ const initialState: InfoState = {
     country: '',
     zip: '',
   },
+  payment: {
+    name: '',
+    card: '',
+    date: '',
+    code: '',
+  },
 };
 
 type Actions = PushShippingAction | PushBillingAction;

@@ -11,6 +11,7 @@ export interface RootState {
 export interface InfoState {
   shipping: InfoShipping;
   billing: InfoBilling;
+  payment: InfoPayment;
 }
 
 export interface InfoShipping {
@@ -31,6 +32,13 @@ export interface InfoBilling {
   city: string;
   country: string;
   zip: string;
+}
+
+export interface InfoPayment {
+  name: string;
+  card: string;
+  date: string;
+  code: string;
 }
 
 export interface CartState {
