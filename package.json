@@ -2,7 +2,7 @@
   "name": "fashion-shop",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./shipping/",
+  "homepage": "shipping/",
   "dependencies": {
     "@hookform/resolvers": "^2.7.1",
     "@reduxjs/toolkit": "^1.6.1",
@@ -25,6 +25,7 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
     "typescript": "^4.3.5",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.2",
     "yup": "^0.32.9"
   },
