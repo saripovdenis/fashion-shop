@@ -1,8 +1,12 @@
 import { produce } from 'immer';
-import { PushShippingAction, PushBillingAction } from '../actions/info';
-import { PushShippingActionType, PushBillingActionType } from '../actions/constants';
+import { PushShippingAction, PushBillingAction, PushPaymentAction } from '../actions/info';
+import {
+  PushShippingActionType,
+  PushBillingActionType,
+  PushPaymentActionType,
+} from '../actions/constants';
 
-import { InfoShipping, InfoState, InfoBilling } from '../../types';
+import { InfoShipping, InfoState, InfoBilling, InfoPayment } from '../../types';
 
 const initialState: InfoState = {
   shipping: {
@@ -29,7 +33,7 @@ const initialState: InfoState = {
   },
 };
 
-type Actions = PushShippingAction | PushBillingAction;
+type Actions = PushShippingAction | PushBillingAction | PushPaymentAction;
 
 const cart = (state: InfoState = initialState, action: Actions) => {
   switch (action.type) {
@@ -37,6 +41,8 @@ const cart = (state: InfoState = initialState, action: Actions) => {
       return reducePushShippingAction(state, action.payload);
     case PushBillingActionType:
       return reducePushBillingAction(state, action.payload);
+    case PushPaymentActionType:
+      return reducePushPaymentAction(state, action.payload);
 
     default:
       return state;
@@ -67,6 +73,17 @@ function reducePushBillingAction(state: InfoState, info: InfoBilling) {
       city: info.city,
       country: info.country,
       zip: info.zip,
+    };
+  });
+}
+
+function reducePushPaymentAction(state: InfoState, info: InfoPayment) {
+  return produce(state, (draft) => {
+    draft.payment = {
+      name: info.name,
+      card: info.card,
+      date: info.date,
+      code: info.code,
     };
   });
 }
