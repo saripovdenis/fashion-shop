@@ -3,6 +3,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import InputMask from 'react-input-mask';
 
 import { useDispatch } from 'react-redux';
 import { createPushPaymentAction } from '../redux/actions/info';
@@ -34,7 +35,7 @@ const schema = yup.object().shape({
     .string()
     .trim()
     .required('This field is required')
-    .matches(/\d\d\/\d\d/, 'Enter a valid date. For example: 09/11'),
+    .matches(/(0[1-9]|1[012])\/\d\d/, 'Enter a valid date.'),
   code: yup
     .string()
     .trim()
@@ -94,7 +95,12 @@ function Payment({ history }: Props) {
                     <div className="form__block__input__error--message">{errors.card.message}</div>
                   </div>
                 )}
-                <input {...register('card')} placeholder="XXXX XXXX XXXX XXXX" type="text" />
+                <InputMask
+                  mask="9999 9999 9999 9999"
+                  {...register('card')}
+                  placeholder="XXXX XXXX XXXX XXXX"
+                  type="text"
+                />
               </div>
             </div>
           </div>
@@ -111,7 +117,7 @@ function Payment({ history }: Props) {
                         </div>
                       </div>
                     )}
-                    <input {...register('date')} placeholder="MM/YY" type="text" />
+                    <InputMask mask="99/99" {...register('date')} placeholder="MM/YY" type="text" />
                   </div>
                 </div>
               </div>

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import InputMask from 'react-input-mask';
 
 import { History } from 'history';
 
@@ -22,11 +23,7 @@ const schema = yup.object().shape({
     .trim()
     .required('This field is required')
     .matches(/\w\s\w\s?\w?/, 'Enter a valid name. For example: Jack Harlow'),
-  phone: yup
-    .string()
-    .trim()
-    .required('This field is required')
-    .matches(/\+?\d\d\d\d\d\d\d\d\d\d\d/, 'Enter a valid phone. For example: 88005553535'),
+  phone: yup.string().trim().required('This field is required'),
   address: yup.string().trim().required('This field is required'),
   city: yup.string().trim().required('This field is required'),
   country: yup.string().trim().required('This field is required'),
@@ -77,7 +74,12 @@ const Shipping = ({ history }: Props) => {
                     <div className="form__block__input__error--message">{errors.phone.message}</div>
                   </div>
                 )}
-                <input {...register('phone')} placeholder="Daytime Phone" type="number" />
+                <InputMask
+                  mask="+7 (999) 999-99-99"
+                  {...register('phone')}
+                  placeholder="Daytime Phone"
+                  type="text"
+                />
                 <label>For delivery questions only</label>
               </div>
             </div>

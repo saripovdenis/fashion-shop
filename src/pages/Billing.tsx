@@ -35,7 +35,7 @@ const schema = yup.object().shape({
   zip: yup
     .string()
     .trim()
-    .length(6)
+    .length(6, 'Must be exactly 6 characters')
     .required('This field is required')
     .matches(/\d\d\d\d\d\d/, 'Enter a valid zip. For example: 628600'),
 });
