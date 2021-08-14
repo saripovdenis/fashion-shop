@@ -19,10 +19,12 @@ interface Props {
 const schema = yup.object().shape({
   name: yup
     .string()
+    .trim()
     .required('This field is required')
     .matches(/\w\s\w\s?\w?/, 'Enter a valid name. For example: Jack Harlow'),
   card: yup
     .string()
+    .trim()
     .required('This field is required')
     .matches(
       /\d\d\d\d\s\d\d\d\d\s\d\d\d\d\s\d\d\d\d/,
@@ -30,10 +32,13 @@ const schema = yup.object().shape({
     ),
   date: yup
     .string()
+    .trim()
     .required('This field is required')
     .matches(/\d\d\/\d\d/, 'Enter a valid date. For example: 09/11'),
   code: yup
     .string()
+    .trim()
+    .length(3, 'Must be exactly 3 characters')
     .required('This field is required')
     .matches(/\d\d\d/, 'Enter a valid zip. For example: 600'),
 });

@@ -8,7 +8,7 @@ const initialState: CartState = {
   items: [
     {
       name: 'The Chelsea Boot',
-      img: '123',
+      img: './item.png',
       color: 'Black',
       quantity: 1,
       price: 235,
@@ -16,7 +16,7 @@ const initialState: CartState = {
     },
     {
       name: 'The Twill Snap Backpack',
-      img: '123',
+      img: './item.png',
       color: 'Reverse Denim + Brown leather',
       quantity: 1,
       price: 65,
@@ -24,7 +24,7 @@ const initialState: CartState = {
     },
     {
       name: 'The Twill Zip Tote',
-      img: '123',
+      img: './item.png',
       color: 'Reverse Denim + Brown leather',
       quantity: 1,
       price: 48,
