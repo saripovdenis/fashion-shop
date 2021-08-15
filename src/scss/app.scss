@@ -1,5 +1,6 @@
 @import './fonts';
 @import './variables';
+@import './mixins';
 @import 'libs/normalize';
 
 @import './components/all';
@@ -26,6 +27,12 @@ body {
   -webkit-box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.1);
   -moz-box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.1);
   box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.1);
+
+  @include phones {
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+  }
 }
 
 .title {

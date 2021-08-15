@@ -153,4 +153,8 @@
       }
     }
   }
+
+  @include phones {
+    order: 1;
+  }
 }
