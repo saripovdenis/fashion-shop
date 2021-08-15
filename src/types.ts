@@ -12,6 +12,7 @@ export interface InfoState {
   shipping: InfoShipping;
   billing: InfoBilling;
   payment: InfoPayment;
+  success: boolean;
 }
 
 export interface InfoShipping {

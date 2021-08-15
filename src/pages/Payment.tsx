@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import InputMask from 'react-input-mask';
 
 import { useDispatch } from 'react-redux';
-import { createPushPaymentAction } from '../redux/actions/info';
+import { createPushPaymentAction, createPushSuccessAction } from '../redux/actions/info';
 
 import { History } from 'history';
 
@@ -55,6 +55,7 @@ function Payment({ history }: Props) {
 
   const onSubmit: SubmitHandler<InfoPayment> = (data: InfoPayment) => {
     dispatch(createPushPaymentAction(data));
+    dispatch(createPushSuccessAction());
     history.push('./success');
   };
 
