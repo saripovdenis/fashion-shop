@@ -20,17 +20,22 @@ interface Props {
 const schema = yup.object().shape({
   name: yup
     .string()
+    .trim()
     .required('This field is required')
     .matches(/\w\s\w\s?\w?/, 'Enter a valid name. For example: Jack Harlow'),
   email: yup
     .string()
+    .trim()
+    .email()
     .required('This field is required')
     .matches(/@/, 'Enter a valid email. For example: fashion-shop@yandex.com'),
-  address: yup.string().required('This field is required'),
-  city: yup.string().required('This field is required'),
-  country: yup.string().required('This field is required'),
+  address: yup.string().trim().required('This field is required'),
+  city: yup.string().trim().required('This field is required'),
+  country: yup.string().trim().required('This field is required'),
   zip: yup
     .string()
+    .trim()
+    .length(6, 'Must be exactly 6 characters')
     .required('This field is required')
     .matches(/\d\d\d\d\d\d/, 'Enter a valid zip. For example: 628600'),
 });

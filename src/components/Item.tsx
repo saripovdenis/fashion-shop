@@ -25,7 +25,9 @@ const Item = ({ img, name, price, color, quantity, id, editing }: ItemProps) => 
 
   return (
     <div className="cart__order__item">
-      <div className="cart__order__item--image">image</div>
+      <div className="cart__order__item--image">
+        <img src={img} alt="item" />
+      </div>
       <div className="cart__order__item__description">
         <div className="cart__order__item__description--title">
           <div>{name}</div>

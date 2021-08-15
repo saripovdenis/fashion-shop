@@ -8,7 +8,7 @@ function Start() {
       <div className="page__content">
         <div className="page__content--button">
           <Link to="./shipping">
-            <button>Go to shipping</button>
+            <button>Перейти к доставке</button>
           </Link>
         </div>
       </div>

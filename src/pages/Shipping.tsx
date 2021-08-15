@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import InputMask from 'react-input-mask';
 
 import { History } from 'history';
 
@@ -19,29 +20,29 @@ interface Props {
 const schema = yup.object().shape({
   name: yup
     .string()
+    .trim()
     .required('This field is required')
     .matches(/\w\s\w\s?\w?/, 'Enter a valid name. For example: Jack Harlow'),
-  phone: yup
-    .string()
-    .required('This field is required')
-    .matches(/\+?\d\d\d\d\d\d\d\d\d\d\d/, 'Enter a valid phone. For example: 88005553535'),
-  address: yup.string().required('This field is required'),
-  city: yup.string().required('This field is required'),
-  country: yup.string().required('This field is required'),
+  phone: yup.string().trim().required('This field is required'),
+  address: yup.string().trim().required('This field is required'),
+  city: yup.string().trim().required('This field is required'),
+  country: yup.string().trim().required('This field is required'),
   zip: yup
     .string()
+    .trim()
+    .length(6, 'Must be exactly 6 characters')
     .required('This field is required')
     .matches(/\d\d\d\d\d\d/, 'Enter a valid zip. For example: 628600'),
 });
 
 const Shipping = ({ history }: Props) => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<InfoShipping>({ resolver: yupResolver(schema) });
-
-  const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<InfoShipping> = (data: InfoShipping) => {
     dispatch(createPushShippingAction(data));
@@ -73,7 +74,12 @@ const Shipping = ({ history }: Props) => {
                     <div className="form__block__input__error--message">{errors.phone.message}</div>
                   </div>
                 )}
-                <input {...register('phone')} placeholder="Daytime Phone" type="number" />
+                <InputMask
+                  mask="+7 (999) 999-99-99"
+                  {...register('phone')}
+                  placeholder="Daytime Phone"
+                  type="text"
+                />
                 <label>For delivery questions only</label>
               </div>
             </div>

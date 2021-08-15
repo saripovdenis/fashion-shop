@@ -1,9 +1,15 @@
 import { produce } from 'immer';
-import { PushShippingAction, PushBillingAction, PushPaymentAction } from '../actions/info';
+import {
+  PushShippingAction,
+  PushBillingAction,
+  PushPaymentAction,
+  PushSuccessAction,
+} from '../actions/info';
 import {
   PushShippingActionType,
   PushBillingActionType,
   PushPaymentActionType,
+  PushSuccessActionType,
 } from '../actions/constants';
 
 import { InfoShipping, InfoState, InfoBilling, InfoPayment } from '../../types';
@@ -31,9 +37,10 @@ const initialState: InfoState = {
     date: '',
     code: '',
   },
+  success: false,
 };
 
-type Actions = PushShippingAction | PushBillingAction | PushPaymentAction;
+type Actions = PushShippingAction | PushBillingAction | PushPaymentAction | PushSuccessAction;
 
 const cart = (state: InfoState = initialState, action: Actions) => {
   switch (action.type) {
@@ -43,6 +50,8 @@ const cart = (state: InfoState = initialState, action: Actions) => {
       return reducePushBillingAction(state, action.payload);
     case PushPaymentActionType:
       return reducePushPaymentAction(state, action.payload);
+    case PushSuccessActionType:
+      return reducePushSuccessAction(state);
 
     default:
       return state;
@@ -85,6 +94,12 @@ function reducePushPaymentAction(state: InfoState, info: InfoPayment) {
       date: info.date,
       code: info.code,
     };
+  });
+}
+
+function reducePushSuccessAction(state: InfoState) {
+  return produce(state, (draft) => {
+    draft.success = true;
   });
 }
 

@@ -3,9 +3,10 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import InputMask from 'react-input-mask';
 
 import { useDispatch } from 'react-redux';
-import { createPushPaymentAction } from '../redux/actions/info';
+import { createPushPaymentAction, createPushSuccessAction } from '../redux/actions/info';
 
 import { History } from 'history';
 
@@ -19,10 +20,12 @@ interface Props {
 const schema = yup.object().shape({
   name: yup
     .string()
+    .trim()
     .required('This field is required')
     .matches(/\w\s\w\s?\w?/, 'Enter a valid name. For example: Jack Harlow'),
   card: yup
     .string()
+    .trim()
     .required('This field is required')
     .matches(
       /\d\d\d\d\s\d\d\d\d\s\d\d\d\d\s\d\d\d\d/,
@@ -30,10 +33,13 @@ const schema = yup.object().shape({
     ),
   date: yup
     .string()
+    .trim()
     .required('This field is required')
-    .matches(/\d\d\/\d\d/, 'Enter a valid date. For example: 09/11'),
+    .matches(/(0[1-9]|1[012])\/\d\d/, 'Enter a valid date.'),
   code: yup
     .string()
+    .trim()
+    .length(3, 'Must be exactly 3 characters')
     .required('This field is required')
     .matches(/\d\d\d/, 'Enter a valid zip. For example: 600'),
 });
@@ -49,6 +55,7 @@ function Payment({ history }: Props) {
 
   const onSubmit: SubmitHandler<InfoPayment> = (data: InfoPayment) => {
     dispatch(createPushPaymentAction(data));
+    dispatch(createPushSuccessAction());
     history.push('./success');
   };
 
@@ -89,7 +96,12 @@ function Payment({ history }: Props) {
                     <div className="form__block__input__error--message">{errors.card.message}</div>
                   </div>
                 )}
-                <input {...register('card')} placeholder="XXXX XXXX XXXX XXXX" type="text" />
+                <InputMask
+                  mask="9999 9999 9999 9999"
+                  {...register('card')}
+                  placeholder="XXXX XXXX XXXX XXXX"
+                  type="text"
+                />
               </div>
             </div>
           </div>
@@ -106,7 +118,7 @@ function Payment({ history }: Props) {
                         </div>
                       </div>
                     )}
-                    <input {...register('date')} placeholder="MM/YY" type="text" />
+                    <InputMask mask="99/99" {...register('date')} placeholder="MM/YY" type="text" />
                   </div>
                 </div>
               </div>

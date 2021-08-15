@@ -9,6 +9,8 @@ function Cart() {
   const { items, subtotal, shipping, taxes, total } = useSelector(({ cart }: RootState) => cart);
   const [editing, setEditing] = React.useState(false);
 
+  const success = useSelector(({ info }: RootState) => info.success);
+
   const handleEditing = () => {
     setEditing((editing) => !editing);
   };
@@ -17,7 +19,7 @@ function Cart() {
     <div className="cart">
       <div className="title">
         <h2>Order Summary</h2>
-        <button onClick={handleEditing}>edit order</button>
+        {!success && <button onClick={handleEditing}>edit order</button>}
       </div>
 
       <div className="cart__order">
