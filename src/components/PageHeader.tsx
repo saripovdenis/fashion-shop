@@ -6,7 +6,7 @@ interface Props {
   active: string;
 }
 
-function PageHeader({ active }: Props) {
+const PageHeader = React.memo(({ active }: Props) => {
   return (
     <div className="page__header">
       <div className="page__header__item">
@@ -63,6 +63,6 @@ function PageHeader({ active }: Props) {
       </div>
     </div>
   );
-}
+});
 
 export default PageHeader;

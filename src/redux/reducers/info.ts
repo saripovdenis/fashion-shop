@@ -1,16 +1,20 @@
 import { produce } from 'immer';
+
 import {
   PushShippingAction,
   PushBillingAction,
   PushPaymentAction,
   PushSuccessAction,
 } from '../actions/info';
+
 import {
   PushShippingActionType,
   PushBillingActionType,
   PushPaymentActionType,
   PushSuccessActionType,
 } from '../actions/constants';
+
+import axios from 'axios';
 
 import { InfoShipping, InfoState, InfoBilling, InfoPayment } from '../../types';
 
@@ -22,6 +26,7 @@ const initialState: InfoState = {
     city: '',
     country: '',
     zip: '',
+    submited: false,
   },
   billing: {
     name: '',
@@ -30,12 +35,14 @@ const initialState: InfoState = {
     city: '',
     country: '',
     zip: '',
+    submited: false,
   },
   payment: {
     name: '',
     card: '',
     date: '',
     code: '',
+    submited: false,
   },
   success: false,
 };
@@ -68,6 +75,7 @@ function reducePushShippingAction(state: InfoState, info: InfoShipping) {
       city: info.city,
       country: info.country,
       zip: info.zip,
+      submited: true,
     };
   });
 }
@@ -82,6 +90,7 @@ function reducePushBillingAction(state: InfoState, info: InfoBilling) {
       city: info.city,
       country: info.country,
       zip: info.zip,
+      submited: true,
     };
   });
 }
@@ -93,11 +102,13 @@ function reducePushPaymentAction(state: InfoState, info: InfoPayment) {
       card: info.card,
       date: info.date,
       code: info.code,
+      submited: true,
     };
   });
 }
 
 function reducePushSuccessAction(state: InfoState) {
+  axios.post('www.google.com', state);
   return produce(state, (draft) => {
     draft.success = true;
   });

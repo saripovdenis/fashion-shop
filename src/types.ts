@@ -23,6 +23,7 @@ export interface InfoShipping {
   city: string;
   country: string;
   zip: string;
+  submited: boolean;
 }
 
 export interface InfoBilling {
@@ -33,6 +34,7 @@ export interface InfoBilling {
   city: string;
   country: string;
   zip: string;
+  submited: boolean;
 }
 
 export interface InfoPayment {
@@ -40,6 +42,7 @@ export interface InfoPayment {
   card: string;
   date: string;
   code: string;
+  submited: boolean;
 }
 
 export interface CartState {

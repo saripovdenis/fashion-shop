@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeader } from '../components';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,7 +11,7 @@ import InputMask from 'react-input-mask';
 import { History } from 'history';
 
 import { createPushShippingAction } from '../redux/actions/info';
-import { InfoShipping } from '../types';
+import { InfoShipping, RootState } from '../types';
 
 interface Props {
   history: History;
@@ -37,10 +37,14 @@ const schema = yup.object().shape({
 
 const Shipping = ({ history }: Props) => {
   const dispatch = useDispatch();
+  const { name, phone, address, suite, city, country, zip } = useSelector(
+    ({ info }: RootState) => info.shipping,
+  );
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<InfoShipping>({ resolver: yupResolver(schema) });
 
@@ -48,6 +52,16 @@ const Shipping = ({ history }: Props) => {
     dispatch(createPushShippingAction(data));
     history.push('/billing');
   };
+
+  React.useEffect(() => {
+    setValue('name', name);
+    setValue('phone', phone);
+    setValue('address', address);
+    setValue('suite', suite);
+    setValue('city', city);
+    setValue('country', country);
+    setValue('zip', zip);
+  }, []);
 
   return (
     <div className="page">
