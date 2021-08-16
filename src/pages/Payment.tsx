@@ -164,7 +164,7 @@ function Payment({ history }: Props) {
                 </div>
               </div>
 
-              <input type="submit" />
+              <input type="submit" value="Order" />
             </form>
           </div>
         )}

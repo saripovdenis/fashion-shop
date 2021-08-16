@@ -161,7 +161,7 @@ const Shipping = ({ history }: Props) => {
               </div>
             </div>
           </div>
-          <input type="submit" />
+          <input type="submit" value="Continue" />
         </form>
       </div>
     </div>
