@@ -156,5 +156,7 @@
 
   @include phones {
     order: 1;
+    width: 100%;
+    max-width: 480px;
   }
 }
